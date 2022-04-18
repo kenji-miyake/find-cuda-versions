@@ -1,6 +1,5 @@
 - repository: autowarefoundation/autoware
   files:
-    - source: .github/dependabot.yaml
     - source: .github/stale.yml
     - source: .github/workflows/pre-commit.yaml
     - source: .github/workflows/pre-commit-optional.yaml
