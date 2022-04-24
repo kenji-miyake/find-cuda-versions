@@ -44,7 +44,7 @@ def test_ubuntu2004__sbsa(shared_datadir):
     page = get_page(shared_datadir / "ubuntu2004-sbsa.html")
 
     cudnn_versions = parser.get_cudnn_versions(page)
-    [
+    assert cudnn_versions == [
         "8.1.0.77-1+cuda11.2",
         "8.1.1.33-1+cuda11.2",
         "8.2.0.53-1+cuda11.3",
