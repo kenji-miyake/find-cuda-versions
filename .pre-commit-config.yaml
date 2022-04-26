@@ -4,7 +4,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.1.0
+    rev: v4.2.0
     hooks:
       - id: check-json
       - id: check-merge-conflict
@@ -33,15 +33,6 @@ repos:
     rev: v1.26.3
     hooks:
       - id: yamllint
-
-  - repo: https://github.com/tier4/pre-commit-hooks-ros
-    rev: v0.6.0
-    hooks:
-      - id: prettier-xacro
-      - id: prettier-launch-xml
-      - id: prettier-package-xml
-      - id: sort-package-xml
-      - id: ros-include-guard
 
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.8.0.4
