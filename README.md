@@ -1,8 +1,8 @@
 # find-cuda-versions
 
-## Prerequisite
+## Prerequisites
 
-- Python 3.10
+- Python 3.10+
 
 ## Usage
 
