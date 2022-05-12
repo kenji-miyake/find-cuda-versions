@@ -17,7 +17,7 @@ def get_versions(os, arch):
 
     session = requests.Session()
     res = session.get(page_url)
-    page = BeautifulSoup(res.content.decode("cp932"), "html.parser")
+    page = BeautifulSoup(res.content, "html.parser")
 
     cudnn_versions = parser.get_cudnn_versions(page)
     tensorrt_versions = parser.get_tensorrt_versions(page)
@@ -50,8 +50,8 @@ def show_versions(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cuda", default="11.6")
-    parser.add_argument("--os", default="ubuntu2004")
+    parser.add_argument("--cuda", default="11.7")
+    parser.add_argument("--os", default="ubuntu2204")
     parser.add_argument("--arch", nargs="+", default=["x86_64", "sbsa"])
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     parser.add_argument("--log-level", default="INFO", choices=logging._nameToLevel.keys())
