@@ -29,18 +29,8 @@ def test_ubuntu2004__x86_64(shared_datadir):
 
     tensorrt_versions = parser.get_tensorrt_versions(page)
     assert tensorrt_versions == [
-        "8.0.0-1+cuda11.0",
-        "8.0.0-1+cuda11.3",
-        "8.0.1-1+cuda11.3",
-        "8.0.3-1+cuda11.3",
-        "8.2.0-1+cuda11.4",
-        "8.2.1-1+cuda11.4",
-        "8.2.2-1+cuda11.4",
-        "8.2.3-1+cuda11.4",
-        "8.2.4-1+cuda11.4",
-        "8.2.5-1+cuda11.4",
-        "8.4.1-1+cuda11.6",
-        "8.4.2-1+cuda11.6",
+        "8.4.1.5-1+cuda11.6",
+        "8.4.2.4-1+cuda11.6",
     ]
 
 
@@ -65,14 +55,6 @@ def test_ubuntu2004__sbsa(shared_datadir):
 
     tensorrt_versions = parser.get_tensorrt_versions(page)
     assert tensorrt_versions == [
-        "8.0.1-1+cuda11.3",
-        "8.0.2-1+cuda11.3",
-        "8.2.0-1+cuda11.4",
-        "8.2.1-1+cuda11.4",
-        "8.2.2-1+cuda11.4",
-        "8.2.3-1+cuda11.4",
-        "8.2.4-1+cuda11.4",
-        "8.2.5-1+cuda11.4",
-        "8.4.1-1+cuda11.6",
-        "8.4.2-1+cuda11.6",
+        "8.4.1.5-1+cuda11.6",
+        "8.4.2.4-1+cuda11.6",
     ]
