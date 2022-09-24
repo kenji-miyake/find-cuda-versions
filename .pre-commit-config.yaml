@@ -61,7 +61,7 @@ repos:
     hooks:
       - id: flake8-ros
 
-  - repo: https://github.com/ComPWA/mirrors-pyright
+  - repo: https://github.com/RobertCraigie/pyright-python
     rev: v1.1.272
     hooks:
       - id: pyright
