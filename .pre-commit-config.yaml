@@ -61,4 +61,9 @@ repos:
     hooks:
       - id: flake8-ros
 
+  - repo: https://github.com/ComPWA/mirrors-pyright
+    rev: v1.1.272
+    hooks:
+      - id: pyright
+
 exclude: .svg
