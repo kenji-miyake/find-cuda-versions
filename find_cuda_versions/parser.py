@@ -21,5 +21,8 @@ def get_cudnn_versions(page: BeautifulSoup):
     return [trim(name) for name in get_package_names(page, r"^libcudnn\d+_")]
 
 
+def get_nvinfer_versions(page: BeautifulSoup):
+    return [trim(name) for name in get_package_names(page, r"^libnvinfer\d+_")]
+
 def get_tensorrt_versions(page: BeautifulSoup):
     return [trim(name) for name in get_package_names(page, r"^tensorrt+_")]
