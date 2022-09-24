@@ -61,9 +61,13 @@ repos:
     hooks:
       - id: flake8-ros
 
-  - repo: https://github.com/RobertCraigie/pyright-python
-    rev: v1.1.272
+  - repo: local
     hooks:
       - id: pyright
+        name: pyright
+        entry: pyright
+        language: node
+        types: [python]
+        additional_dependencies: [pyright@1.1.272]
 
 exclude: .svg
