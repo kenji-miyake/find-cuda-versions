@@ -1,13 +1,15 @@
+from pathlib import Path
+
 from bs4 import BeautifulSoup
 
 from find_cuda_versions import parser
 
 
-def get_page(file_path):
+def get_page(file_path: Path):
     return BeautifulSoup(file_path.read_text(encoding="utf8"), "html.parser")
 
 
-def test_ubuntu2004__x86_64(shared_datadir):
+def test_ubuntu2004__x86_64(shared_datadir: Path):
     page = get_page(shared_datadir / "ubuntu2004-x86_64.html")
     cudnn_versions = parser.get_cudnn_versions(page)
     assert cudnn_versions == [
@@ -50,7 +52,7 @@ def test_ubuntu2004__x86_64(shared_datadir):
     ]
 
 
-def test_ubuntu2004__sbsa(shared_datadir):
+def test_ubuntu2004__sbsa(shared_datadir: Path):
     page = get_page(shared_datadir / "ubuntu2004-sbsa.html")
 
     cudnn_versions = parser.get_cudnn_versions(page)
