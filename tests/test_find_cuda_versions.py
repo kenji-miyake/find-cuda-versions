@@ -43,8 +43,6 @@ def test_ubuntu2004__x86_64(shared_datadir):
         "8.4.2-1+cuda11.6",
     ]
 
-
-
     tensorrt_versions = parser.get_tensorrt_versions(page)
     assert tensorrt_versions == [
         "8.4.1.5-1+cuda11.6",
@@ -71,7 +69,6 @@ def test_ubuntu2004__sbsa(shared_datadir):
         "8.4.1.50-1+cuda11.6",
     ]
 
-
     nvinfer_versions = parser.get_nvinfer_versions(page)
     assert nvinfer_versions == [
         "8.0.1-1+cuda11.3",
@@ -85,7 +82,6 @@ def test_ubuntu2004__sbsa(shared_datadir):
         "8.4.1-1+cuda11.6",
         "8.4.2-1+cuda11.6",
     ]
-
 
     tensorrt_versions = parser.get_tensorrt_versions(page)
     assert tensorrt_versions == [

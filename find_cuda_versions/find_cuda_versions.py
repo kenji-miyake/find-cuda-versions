@@ -43,13 +43,11 @@ def show_versions(args):
             print(v)
         print("")
 
-
     for arch in args.arch:
         print(f"[nvinfer {arch}]")
         for v in versions[arch]["nvinfer"]:
             print(v)
         print("")
-
 
     for arch in args.arch:
         print(f"[tensorrt {arch}]")
