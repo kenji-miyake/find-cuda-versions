@@ -19,6 +19,8 @@ pytest-datadir = "^1.4.1"
 find-cuda-versions = "find_cuda_versions.find_cuda_versions:main"
 
 [tool.pyright]
+venvPath = "."
+venv = ".venv"
 typeCheckingMode = "strict"
 
 [build-system]
