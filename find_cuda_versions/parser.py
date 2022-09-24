@@ -7,12 +7,13 @@ logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
 
-def trim(package_name):
+def trim(package_name: str) -> str:
     m = re.match(r"\w+_(.+)_\w+\.deb", package_name)
+    assert m is not None
     return m[1]
 
 
-def get_package_names(page, pattern):
+def get_package_names(page: BeautifulSoup, pattern: str) -> list[str]:
     spans = page.find_all("span", {"class": "file"})
     return [t for span in spans if re.match(pattern, t := span.text)]
 

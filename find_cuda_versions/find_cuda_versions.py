@@ -1,7 +1,7 @@
 import argparse
 import logging
 
-import argcomplete
+import argcomplete  # pyright: ignore [reportMissingTypeStubs, reportUnknownVariableType]
 from bs4 import BeautifulSoup
 import requests
 
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel("DEBUG")
 
 
-def get_versions(os, arch):
+def get_versions(os: str, arch: str):
     page_url = f"https://developer.download.nvidia.com/compute/cuda/repos/{os}/{arch}/"
 
     session = requests.Session()
@@ -26,30 +26,31 @@ def get_versions(os, arch):
     return cudnn_versions, nvinfer_versions, tensorrt_versions
 
 
-def show_versions(args):
-    versions = {}
-    for arch in args.arch:
-        cudnn_versions, nvinfer_versions, tensorrt_versions = get_versions(args.os, arch)
-        cuda_str = f"cuda{args.cuda}"
+def show_versions(cuda: str, os: str, arch_list: list[str]):
+    versions: dict[str, dict[str, list[str]]] = {}
+    arch: str
+    for arch in arch_list:
+        cudnn_versions, nvinfer_versions, tensorrt_versions = get_versions(os, arch)
+        cuda_str = f"cuda{cuda}"
 
         versions[arch] = {}
         versions[arch]["cudnn"] = [v for v in cudnn_versions if cuda_str in v]
         versions[arch]["nvinfer"] = [v for v in nvinfer_versions if cuda_str in v]
         versions[arch]["tensorrt"] = [v for v in tensorrt_versions if cuda_str in v]
 
-    for arch in args.arch:
+    for arch in arch_list:
         print(f"[cudnn {arch}]")
         for v in versions[arch]["cudnn"]:
             print(v)
         print("")
 
-    for arch in args.arch:
+    for arch in arch_list:
         print(f"[nvinfer {arch}]")
         for v in versions[arch]["nvinfer"]:
             print(v)
         print("")
 
-    for arch in args.arch:
+    for arch in arch_list:
         print(f"[tensorrt {arch}]")
         for v in versions[arch]["tensorrt"]:
             print(v)
@@ -57,20 +58,24 @@ def show_versions(args):
 
 
 def main():
+    def get_log_level_names():
+        # TODO(Kenji Miyake): Use getLevelNamesMapping() in Python 3.11
+        return logging._nameToLevel.keys()  # pyright: ignore [reportPrivateUsage]
+
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cuda", default="11.7")
-    parser.add_argument("--os", default="ubuntu2204")
-    parser.add_argument("--arch", nargs="+", default=["x86_64", "sbsa"])
+    parser.add_argument("--cuda", type=str, default="11.7")
+    parser.add_argument("--os", type=str, default="ubuntu2204")
+    parser.add_argument("--arch", type=str, nargs="+", default=["x86_64", "sbsa"])
+    parser.add_argument("--log-level", type=str, default="INFO", choices=get_log_level_names())
     parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
-    parser.add_argument("--log-level", default="INFO", choices=logging._nameToLevel.keys())
     args = parser.parse_args()
-    argcomplete.autocomplete(parser)
+    argcomplete.autocomplete(parser)  # pyright: ignore
 
     handler = logging.StreamHandler()
     handler.setLevel(args.log_level)
     logging.basicConfig(handlers=[handler])
 
-    show_versions(args)
+    show_versions(args.cuda, args.os, args.arch)
 
 
 if __name__ == "__main__":
