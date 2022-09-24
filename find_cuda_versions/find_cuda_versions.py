@@ -20,24 +20,32 @@ def get_versions(os, arch):
     page = BeautifulSoup(res.content, "html.parser")
 
     cudnn_versions = parser.get_cudnn_versions(page)
+    nvinfer_versions = parser.get_nvinfer_versions(page)
     tensorrt_versions = parser.get_tensorrt_versions(page)
 
-    return cudnn_versions, tensorrt_versions
+    return cudnn_versions, nvinfer_versions, tensorrt_versions
 
 
 def show_versions(args):
     versions = {}
     for arch in args.arch:
-        cudnn_versions, tensorrt_versions = get_versions(args.os, arch)
+        cudnn_versions, nvinfer_versions, tensorrt_versions = get_versions(args.os, arch)
         cuda_str = f"cuda{args.cuda}"
 
         versions[arch] = {}
         versions[arch]["cudnn"] = [v for v in cudnn_versions if cuda_str in v]
+        versions[arch]["nvinfer"] = [v for v in nvinfer_versions if cuda_str in v]
         versions[arch]["tensorrt"] = [v for v in tensorrt_versions if cuda_str in v]
 
     for arch in args.arch:
         print(f"[cudnn {arch}]")
         for v in versions[arch]["cudnn"]:
+            print(v)
+        print("")
+
+    for arch in args.arch:
+        print(f"[nvinfer {arch}]")
+        for v in versions[arch]["nvinfer"]:
             print(v)
         print("")
 
