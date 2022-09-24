@@ -22,6 +22,7 @@ find-cuda-versions = "find_cuda_versions.find_cuda_versions:main"
 venvPath = "."
 venv = ".venv"
 typeCheckingMode = "strict"
+reportMissingModuleSource = "error"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
