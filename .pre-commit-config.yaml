@@ -61,4 +61,11 @@ repos:
     hooks:
       - id: flake8-ros
 
+  - repo: https://github.com/RobertCraigie/pyright-python
+    rev: v1.1.272
+    hooks:
+      - id: pyright
+        additional_dependencies: [argcomplete, beautifulsoup4, requests]
+        verbose: true
+
 exclude: .svg
