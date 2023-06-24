@@ -61,4 +61,12 @@ repos:
     hooks:
       - id: flake8-ros
 
-exclude: .svg
+  - repo: local
+    hooks:
+      - id: prettier-html
+        name: prettier html
+        description: Apply Prettier with plugin-xml to html.
+        entry: prettier --write --list-different --ignore-unknown --print-width 200 --xml-self-closing-space false --xml-whitespace-sensitivity ignore
+        language: node
+        files: .html$
+        additional_dependencies: [prettier@2.7.1, "@prettier/plugin-xml@2.2.0"]
